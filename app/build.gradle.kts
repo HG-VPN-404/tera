@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "vtsen.hashnode.dev.newemptycomposeapp" // Sesuaikan dengan folder
+    namespace = "vtsen.hashnode.dev.newemptycomposeapp"
     compileSdk = 34
 
     defaultConfig {
@@ -18,18 +18,22 @@ android {
 
     buildTypes {
         release {
+            // FIX 1: Pakai 'is' di depannya (Syntax Kotlin DSL)
             isMinifyEnabled = true
-            shrinkResources = true
+            isShrinkResources = true
+            
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
+
+    // FIX 2: Block 'kotlinOptions' SAYA HAPUS BIAR GAK ERROR.
+    // (Aman, karena sudah ikut compileOptions di atas)
+
     buildFeatures {
         compose = true
     }
@@ -48,11 +52,11 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
 
-    // --- LIBRARY TAMBAHAN KITA ---
-    implementation("com.squareup.okhttp3:okhttp:4.12.0") // Internet
-    implementation("com.google.code.gson:gson:2.10.1")   // JSON
-    implementation("androidx.media3:media3-exoplayer:1.2.1") // Video Player
+    // --- LIBRARY TAMBAHAN ---
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("com.google.code.gson:gson:2.10.1")
+    implementation("androidx.media3:media3-exoplayer:1.2.1")
     implementation("androidx.media3:media3-ui:1.2.1")
     implementation("androidx.media3:media3-common:1.2.1")
-    implementation("io.coil-kt:coil-compose:2.5.0")     // Gambar
+    implementation("io.coil-kt:coil-compose:2.5.0")
 }
