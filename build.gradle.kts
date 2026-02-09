@@ -1,33 +1,10 @@
-buildscript {
-}
-
+// Top-level build file
 plugins {
-    alias(libs.plugins.android.application) apply false
-    alias(libs.plugins.android.library) apply false
-    alias(libs.plugins.kotlin.android) apply false
-    alias(libs.plugins.diffplug.spotless) apply false
+    // Kita deklarasikan versi plugin di sini biar rapi
+    id("com.android.application") version "8.2.2" apply false
+    id("org.jetbrains.kotlin.android") version "2.0.0" apply false
+    id("org.jetbrains.kotlin.plugin.compose") version "2.0.0" apply false
 }
 
-subprojects {
-    apply(plugin = "com.diffplug.spotless")
-    configure<com.diffplug.gradle.spotless.SpotlessExtension> {
-        kotlin {
-            target("**/*.kt")
-            targetExclude("${layout}.getBuildDirectory()/**/*.kt")
-
-            ktlint()
-            licenseHeaderFile(rootProject.file("spotless/copyright.kt"))
-        }
-
-        kotlinGradle {
-            target("*.gradle.kts")
-            ktlint()
-        }
-    }
-
-    afterEvaluate {
-        tasks.named("preBuild") {
-            dependsOn("spotlessApply")
-        }
-    }
-}
+// SUDAH BERSIH! 
+// Tidak ada lagi perintah "subprojects { apply plugin 'spotless' }" di sini.
