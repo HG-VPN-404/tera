@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    // FIX 1: Wajib ada di Kotlin 2.0+
+    id("org.jetbrains.kotlin.plugin.compose") 
 }
 
 android {
@@ -18,41 +20,36 @@ android {
 
     buildTypes {
         release {
-            // FIX 1: Pakai 'is' di depannya (Syntax Kotlin DSL)
             isMinifyEnabled = true
             isShrinkResources = true
-            
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-
+    
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    // FIX 2: Block 'kotlinOptions' SAYA HAPUS BIAR GAK ERROR.
-    // (Aman, karena sudah ikut compileOptions di atas)
-
     buildFeatures {
         compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
-    }
+    
+    // FIX 2: HAPUS block 'composeOptions' (kotlinCompilerExtensionVersion).
+    // Di Kotlin 2.0, compiler compose sudah otomatis ikut versi Kotlin.
 }
 
 dependencies {
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.activity:activity-compose:1.8.2")
-    implementation(platform("androidx.compose:compose-bom:2023.08.00"))
+    implementation(platform("androidx.compose:compose-bom:2024.06.00")) // Update BOM ke versi baru biar aman
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
 
-    // --- LIBRARY TAMBAHAN ---
+    // --- LIBRARY KITA ---
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("androidx.media3:media3-exoplayer:1.2.1")
