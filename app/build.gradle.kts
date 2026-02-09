@@ -1,7 +1,6 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    // FIX 1: Wajib ada di Kotlin 2.0+
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
@@ -26,17 +25,20 @@ android {
         }
     }
     
+    // --- UPDATE PENTING DI SINI (JADI 17) ---
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    // --- TAMBAHKAN INI BIAR KOTLIN NURUT ---
+    kotlinOptions {
+        jvmTarget = "17"
     }
 
     buildFeatures {
         compose = true
     }
-    
-    // FIX 2: HAPUS block 'composeOptions' (kotlinCompilerExtensionVersion).
-    // Di Kotlin 2.0, compiler compose sudah otomatis ikut versi Kotlin.
 }
 
 dependencies {
@@ -56,7 +58,7 @@ dependencies {
     implementation("androidx.media3:media3-ui:1.2.1")
     implementation("androidx.media3:media3-common:1.2.1")
     implementation("io.coil-kt:coil-compose:2.5.0")
-
-    // --- TAMBAHKAN INI (YANG KETINGGALAN TADI) ---
+    
+    // --- SPLASH SCREEN (WAJIB ADA) ---
     implementation("androidx.core:core-splashscreen:1.0.1")
 }
