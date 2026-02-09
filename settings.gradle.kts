@@ -20,5 +20,5 @@ dependencyResolutionManagement {
         maven ("https://jitpack.io")
     }
 }
-rootProject.name = "New Empty Compose App"
+rootProject.name = "Tera Down"
 include ("app")
