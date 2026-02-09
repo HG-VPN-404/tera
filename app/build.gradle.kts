@@ -25,13 +25,12 @@ android {
         }
     }
     
-    // --- UPDATE PENTING DI SINI (JADI 17) ---
+    // JVM 17 (Fix error sebelumnya)
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    // --- TAMBAHKAN INI BIAR KOTLIN NURUT ---
     kotlinOptions {
         jvmTarget = "17"
     }
@@ -51,7 +50,11 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
 
-    // --- LIBRARY KITA ---
+    // --- LIBRARY WAJIB BUAT ICON 'FOLDER' & 'DOWNLOAD' ---
+    // (Ini yang bikin error tadi, sekarang sudah ditambah)
+    implementation("androidx.compose.material:material-icons-extended")
+
+    // --- LIBRARY UTAMA KITA ---
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("androidx.media3:media3-exoplayer:1.2.1")
@@ -59,6 +62,6 @@ dependencies {
     implementation("androidx.media3:media3-common:1.2.1")
     implementation("io.coil-kt:coil-compose:2.5.0")
     
-    // --- SPLASH SCREEN (WAJIB ADA) ---
+    // --- SPLASH SCREEN ---
     implementation("androidx.core:core-splashscreen:1.0.1")
 }
