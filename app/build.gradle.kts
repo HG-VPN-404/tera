@@ -2,7 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     // FIX 1: Wajib ada di Kotlin 2.0+
-    id("org.jetbrains.kotlin.plugin.compose") 
+    id("org.jetbrains.kotlin.plugin.compose") version "2.0.0"
 }
 
 android {
